@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Button, ContactsElement, Span } from './ContactsList.styled';
+import { Button, ContactsElement, Span } from '../ContactsItem/ContactsItem.styled';
 
 export const ContactsItem = ({ contact, onDelete }) => {
   const { id, name, number } = contact;

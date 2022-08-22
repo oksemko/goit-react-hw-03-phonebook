@@ -9,7 +9,7 @@ import { Container, Title } from './App.styled';
 
 
 export class App extends Component {
-   state = {
+    state = {
     contacts: [],
     filter: '',
   };
@@ -18,15 +18,15 @@ export class App extends Component {
     const contactsList = localStorage.getItem('contactsList');
     if (contactsList) {
       try {
-        const parsecontactsList = JSON.parse(contactsList);
-        this.setState({ contacts: parsecontactsList });
+        const parseContactsList = JSON.parse(contactsList);
+        this.setState({ contacts: parseContactsList });
       } catch {
         this.setState({ contacts: [] });
       }
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contactsList', JSON.stringify(this.state.contacts));
     }

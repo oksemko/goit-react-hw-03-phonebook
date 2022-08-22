@@ -4,7 +4,7 @@ import { Container, Label, Input } from './Filter.styled';
 
 export const Filter = ({ title, value, onChange }) => {
   return (
-     <Container>
+    <Container>
     <Label>
       <span>{title}</span>
       <Input type="text"

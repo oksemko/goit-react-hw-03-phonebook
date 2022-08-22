@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { ContactsItem } from './ContactsItem';
+import { ContactsItem } from '../ContactsItem/ContactsItem';
 import { List } from './ContactsList.styled';
 
 
