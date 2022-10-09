@@ -95,11 +95,10 @@ export class App extends Component {
   contactDelete = id => {
     this.setState(prevState => {
       const { contacts } = prevState;
-      contacts.filter(contact => contact.id !== id);
-      // const contactsAfterDelete = contacts.filter(contact => contact.id !== id);
+      const contactsAfterDelete = contacts.filter(contact => contact.id !== id);
       return {
         contacts: [
-          // ...contactsAfterDelete !     (------> method "filter" return array, so we don`t need to return new one).
+          ...contactsAfterDelete
         ]
       };
     });
