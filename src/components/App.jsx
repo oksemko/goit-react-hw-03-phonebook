@@ -49,63 +49,35 @@ export class App extends Component {
 
 
 
-  formSubmit = ({ name, number }) => {
-    this.setState(prevState => {
-      const { contacts } = prevState;
-      return {
-        contacts: [
-          {
-            id: nanoid(),
-            name,
-            number,
-          },
-          ...contacts,
-        ],
-      };
-    });
+  formSubmit = ({ name, number, contacts }) => {
+    const isContact = this.state.contacts.find(contact => contact.name === name);
+    if (isContact) {
+      alert(`${name} is already in contact`);
+      return contacts;
+    } else {
+      this.setState(prevState => {
+        const { contacts } = prevState;
+        return {
+          contacts: [
+            {
+              id: nanoid(),
+              name,
+              number,
+            },
+            ...contacts,
+          ],
+        };
+      });
+    }
   }
 
-//  ------------ Previous version formSubmit. ------------
-  // ----------- Here was added checking, but in this case it wasn`t nessery because setState would be run anyway. ---------
-
-
-  // formSubmit = ({ name, number }) => {
-  //   this.setState(prevState => {
-  //     const { contacts } = prevState;
-  //     const isContact = contacts.find(contact => contact.name === name);
-
-  //     if (isContact) {
-  //       alert(`${name} ia already in contact`);
-  //       return contacts;
-  //     } else {
-  //       return {
-  //         contacts: [
-  //           {
-  //             id: nanoid(),
-  //             name,
-  //             number,
-  //           },
-  //           ...contacts,
-  //         ],
-  //       };
-  //     }
-  //   });
-  // };
 
   contactDelete = id => {
-    this.setState(prevState => {
-      const { contacts } = prevState;
-      // contacts.filter(contact => contact.id !== id);
-      const contactsAfterDelete = contacts.filter(contact => contact.id !== id);
-      return {
-        contacts: [
-          ...contactsAfterDelete
-          // (!------> method "filter" return array, but here we need another array [contactaAfterDelete] to delete contacts
-          // correctly: only what we need because in other case all contacts will be deleted).
-        ]
-      };
-    });
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
+
 
   render() {
     const { filter } = this.state;
